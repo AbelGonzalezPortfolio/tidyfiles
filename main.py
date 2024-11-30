@@ -10,7 +10,9 @@ import multiprocessing
 
 multiprocessing.set_start_method("spawn", force=True)
 
-from nicegui import ui, native
+from nicegui import ui, app
+
+from app.screens.home import Home
 
 
 # Define Input folder path
@@ -131,7 +133,6 @@ def find_and_move(path):
     # print(kind.mime)
 
 
-# find_and_move(INPUT_PATH)
-
-ui.label("Hello this is TidyFiles")
-ui.run(native=True, reload=False, window_size=(400, 300), fullscreen=False)
+home_screen = Home().screen
+app.on_startup(home_screen)
+ui.run(native=True, window_size=(400, 300), fullscreen=False)
