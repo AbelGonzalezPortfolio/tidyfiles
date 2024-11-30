@@ -6,6 +6,13 @@ import PIL.Image
 import random
 import string
 
+import multiprocessing
+
+multiprocessing.set_start_method("spawn", force=True)
+
+from nicegui import ui, native
+
+
 # Define Input folder path
 # INPUT_PATH = Path("/media/abel/Archive SSD/hd-rec-8/part6")
 INPUT_PATH = Path("/media/abel/Portable-SSD/hd-5/raw")
@@ -124,4 +131,7 @@ def find_and_move(path):
     # print(kind.mime)
 
 
-find_and_move(INPUT_PATH)
+# find_and_move(INPUT_PATH)
+
+ui.label("Hello this is TidyFiles")
+ui.run(native=True, reload=False, window_size=(400, 300), fullscreen=False)

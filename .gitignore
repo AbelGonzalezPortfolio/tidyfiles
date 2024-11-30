@@ -1,2 +1,9 @@
+# Python
 .venv
+
+# NiceGUI
 output/
+build/
+tidyfiles.spec
+dist/
+
