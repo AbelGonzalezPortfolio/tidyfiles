@@ -135,4 +135,4 @@ def find_and_move(path):
 
 home_screen = Home().screen
 app.on_startup(home_screen)
-ui.run(native=True, window_size=(400, 300), fullscreen=False)
+ui.run(native=True, window_size=(800, 600), fullscreen=False)

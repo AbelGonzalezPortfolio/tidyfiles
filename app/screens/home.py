@@ -7,8 +7,7 @@ from webview import FOLDER_DIALOG
 class Home:
 
     def __init__(self):
-        input_path = None
-        output_path = None
+        self.paths = {"input": "", "output": ""}
 
     async def choose_file(self):
         """"""
@@ -20,32 +19,26 @@ class Home:
         else:
             raise ValueError("Folder Selection Canceled")
 
-    async def set_input_path(self, e, selected_input):
-        folder_path = await self.choose_file()
-        self.input_path = Path(folder_path)
-        selected_input.clear()
-        with selected_input:
-            ui.label(str(self.input_path))
-            ui.button(
-                "Change",
-                icon="folder",
-                on_click=lambda e: self.set_input_path(e, selected_input),
-            )
-        return None
+    async def set_path(self, target, select_ui):
+        path = Path(await self.choose_file())
+        self.paths[target] = path
 
-    async def set_output_path(self):
-        folder_path = await self.choose_file()
-        self.output_path = Path(folder_path)
-        ui.label(str(self.output_path))
-        return None
+        select_ui.clear()
+        with select_ui:
+            ui.label(str(path))
+
+        print(self.paths)
 
     def screen(self):
         ui.label("TidyFiles")
-        with ui.label() as selected_input:
-            ui.button(
-                "Input Folder",
-                icon="folder",
-                on_click=lambda e: self.set_input_path(e, selected_input),
-            )
 
-        ui.button("Output Folder", icon="folder", on_click=self.set_output_path)
+        with ui.button(
+            icon="folder",
+            on_click=lambda: self.set_path("input", input_select_ui),
+        ) as input_select_ui:
+            ui.label("Select Input Folder")
+
+        with ui.button(
+            icon="folder", on_click=lambda: self.set_path("output", output_select_ui)
+        ) as output_select_ui:
+            ui.label("select Output Folder")
