@@ -3,6 +3,8 @@ from pathlib import Path
 
 from webview import FOLDER_DIALOG
 
+from app.finder import find_and_move
+
 
 class Home:
 
@@ -42,3 +44,9 @@ class Home:
             icon="folder", on_click=lambda: self.set_path("output", output_select_ui)
         ) as output_select_ui:
             ui.label("select Output Folder")
+
+        ui.button(
+            text="Move",
+            icon="content_cut",
+            on_click=lambda: find_and_move(self.paths["input"], self.paths["output"]),
+        )

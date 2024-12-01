@@ -3,8 +3,10 @@
 __pycache__
 
 # NiceGUI
-output/
 build/
 tidyfiles.spec
 dist/
 
+# Local Tests
+output/
+input/
