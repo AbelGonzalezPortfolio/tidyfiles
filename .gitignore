@@ -5,7 +5,6 @@ __pycache__
 # NiceGUI
 build/
 tidyfiles.spec
-dist/
 
 # Local Tests
 output/
